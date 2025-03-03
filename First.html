@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Agyapong - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background: black; /* Changed to match About page */
+            backdrop-filter: blur(10px);
+            color: white; /* Ensuring text remains visible */
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: white; /* Keeping consistency with About page */
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white; /* Ensure navigation links remain visible */
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            transition: all 0.3s ease-in-out;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 120px;
+        }
+
+        section {
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        h2 {
+            font-size: 28px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .skills li {
+            list-style: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: 0.3s ease-in-out;
+            font-weight: 600;
+        }
+
+        .skills li:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Projects */
+        .project {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            transform: scale(1.1);
+        }
+
+        /* Contact */
+        #contact p {
+            margin: 10px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            section {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Christian Agyapong</h1>
+        <p>Web Developer | Designer | Freelancer</p>
+        <nav>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#movies">Movies</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a passionate web developer and designer, specializing in crafting engaging digital experiences.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul class="skills">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>PHP</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Portfolio Website</h3>
+                <p>A responsive portfolio website showcasing my skills, projects, and contact information.</p>
+            </div>
+            <div class="project">
+                <h3>Todo List App</h3>
+                <p>A simple yet effective task management app.</p>
+            </div>
+        </section>
+
+        <section id="movies">
+            <h2>Christian Cinema Site</h2>
+            <p>Explore my collection of curated films.</p>
+            <a href="Cines.html" class="btn" target="_blank">Visit Movie Site</a>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: your.email@example.com</p>
+            <p>Find me on: <strong>LinkedIn | GitHub | Twitter</strong></p>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("Portfolio Loaded Successfully!");
+        });
+    </script>
+</body>
+</html>
