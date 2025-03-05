@@ -24,27 +24,29 @@
       color: #fff;
     }
 
-    .logo-banner {
+    .top-pane {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #fff; /* White background for the banner */
-      padding: 20px 0; /* Increased padding for a larger banner */
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: 100px; /* Fixed height for the top pane */
+      background-color: #000; /* Black background for the top pane */
       z-index: 1000;
       display: flex;
-      justify-content: center;
       align-items: center;
+      padding: 0 20px;
     }
 
-    .logo-banner img {
-      height: 80px; /* Increased height for a larger logo */
-      width: auto;
+    .top-pane a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-right: 20px;
     }
 
-    body.dark-mode .logo-banner {
-      background-color: #2d2d2d; /* Darker banner background in dark mode */
+    .top-pane a:hover {
+      text-decoration: underline;
     }
 
     .product-container {
@@ -55,7 +57,7 @@
       max-width: 800px;
       width: 100%;
       transition: background-color 0.3s, color 0.3s;
-      margin-top: 140px; /* Increased margin to avoid overlap with the larger banner */
+      margin-top: 120px; /* Adjusted margin to avoid overlap with the top pane */
     }
 
     body.dark-mode .product-container {
@@ -273,7 +275,7 @@
 
     .dark-mode-toggle {
       position: fixed;
-      top: 120px; /* Adjusted to avoid overlap with the larger banner */
+      top: 120px; /* Adjusted to avoid overlap with the top pane */
       right: 20px;
       background-color: #007bff;
       color: white;
@@ -291,7 +293,7 @@
 
     .cart {
       position: fixed;
-      top: 120px; /* Adjusted to avoid overlap with the larger banner */
+      top: 120px; /* Adjusted to avoid overlap with the top pane */
       left: 20px;
       background-color: #007bff;
       color: white;
@@ -327,12 +329,12 @@
         margin-bottom: 20px;
       }
 
-      .logo-banner img {
-        height: 60px; /* Smaller logo for mobile */
+      .top-pane {
+        height: 80px; /* Smaller top pane for mobile */
       }
 
       .product-container {
-        margin-top: 120px; /* Adjusted margin for mobile */
+        margin-top: 100px; /* Adjusted margin for mobile */
       }
 
       .dark-mode-toggle, .cart {
@@ -342,9 +344,9 @@
   </style>
 </head>
 <body>
-  <!-- Logo Banner -->
-  <div class="logo-banner">
-    <img src="WEB.jpg" alt="Website Logo">
+  <!-- Black Top Pane with Home Button -->
+  <div class="top-pane">
+    <a href="First.html">Home</a> <!-- Link to the home page -->
   </div>
 
   <!-- Dark Mode Toggle -->
