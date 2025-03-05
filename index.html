@@ -16,6 +16,12 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
     }
 
     .product-container {
@@ -25,11 +31,22 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       max-width: 800px;
       width: 100%;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .product-container {
+      background-color: #444;
+      color: #fff;
     }
 
     h1 {
       text-align: center;
       color: #333;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode h1 {
+      color: #fff;
     }
 
     .product-gallery {
@@ -42,6 +59,11 @@
       max-width: 400px;
       height: auto;
       border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    #main-image:hover {
+      transform: scale(1.05);
     }
 
     .thumbnail-container {
@@ -57,10 +79,12 @@
       border-radius: 5px;
       cursor: pointer;
       border: 2px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
     }
 
     .thumbnail:hover {
       border-color: #007bff;
+      transform: scale(1.1);
     }
 
     .product-details {
@@ -79,14 +103,17 @@
       border-radius: 5px;
       cursor: pointer;
       margin: 5px;
+      transition: background-color 0.3s, transform 0.3s;
     }
 
     button:hover {
       background-color: #0056b3;
+      transform: scale(1.05);
     }
 
     #more-info {
       margin-top: 10px;
+      transition: opacity 0.3s;
     }
 
     .pricing-table {
@@ -102,6 +129,12 @@
       padding: 20px;
       text-align: center;
       width: 30%;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .pricing-card h3 {
@@ -122,6 +155,12 @@
       border-radius: 10px;
       padding: 15px;
       margin: 10px 0;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .review:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
 
     .review h4 {
@@ -139,6 +178,12 @@
       padding: 15px;
       margin: 10px 0;
       cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .faq-item:hover {
+      background-color: #eee;
+      transform: translateX(10px);
     }
 
     .faq-item h4 {
@@ -152,6 +197,51 @@
 
     .faq-item.active p {
       display: block;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    .cart {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .cart:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    .cart-count {
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      margin-left: 5px;
     }
 
     @media (max-width: 768px) {
@@ -168,15 +258,21 @@
   </style>
 </head>
 <body>
-  <!-- HTML Structure -->
+  <!-- Dark Mode Toggle -->
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+  <!-- Shopping Cart -->
+  <button class="cart" onclick="viewCart()">🛒 Cart <span class="cart-count">0</span></button>
+
+  <!-- Product Container -->
   <div class="product-container">
     <h1>My Awesome Product</h1>
     <div class="product-gallery">
-      <img id="main-image" src="https://via.placeholder.com/400" alt="Product Image">
+      <img id="main-image" src="product4.jpg" alt="Product Image">
       <div class="thumbnail-container">
-        <img src="https://via.placeholder.com/400" alt="Thumbnail 1" class="thumbnail" onclick="changeImage('https://via.placeholder.com/400')">
-        <img src="https://via.placeholder.com/400/ff0000" alt="Thumbnail 2" class="thumbnail" onclick="changeImage('https://via.placeholder.com/400/ff0000')">
-        <img src="https://via.placeholder.com/400/00ff00" alt="Thumbnail 3" class="thumbnail" onclick="changeImage('https://via.placeholder.com/400/00ff00')">
+        <img src="product1.jpg" alt="Thumbnail 1" class="thumbnail" onclick="changeImage('product1.jpg')">
+        <img src="product2.jpg" alt="Thumbnail 2" class="thumbnail" onclick="changeImage('product2.jpg')">
+        <img src="product3.jpg" alt="Thumbnail 3" class="thumbnail" onclick="changeImage('product3.jpg')">
       </div>
     </div>
     <div class="product-details">
@@ -193,7 +289,7 @@
           <li>Feature 3: 2-year warranty</li>
         </ul>
       </div>
-      <button id="buy-now-btn" onclick="buyNow()">Buy Now</button>
+      <button id="buy-now-btn" onclick="addToCart()">Add to Cart</button>
     </div>
 
     <!-- Pricing Table -->
@@ -202,19 +298,19 @@
         <h3>Basic</h3>
         <p>$19.99</p>
         <p>Includes basic features</p>
-        <button onclick="buyNow()">Buy Basic</button>
+        <button onclick="addToCart('Basic')">Add to Cart</button>
       </div>
       <div class="pricing-card">
         <h3>Standard</h3>
         <p>$39.99</p>
         <p>Includes advanced features</p>
-        <button onclick="buyNow()">Buy Standard</button>
+        <button onclick="addToCart('Standard')">Add to Cart</button>
       </div>
       <div class="pricing-card">
         <h3>Premium</h3>
         <p>$59.99</p>
         <p>Includes all features</p>
-        <button onclick="buyNow()">Buy Premium</button>
+        <button onclick="addToCart('Premium')">Add to Cart</button>
       </div>
     </div>
 
@@ -223,10 +319,12 @@
       <h2>Customer Reviews</h2>
       <div class="review">
         <h4>John Doe</h4>
+        <div class="rating" data-rating="4"></div>
         <p>"This product is amazing! It has completely changed the way I work."</p>
       </div>
       <div class="review">
         <h4>Jane Smith</h4>
+        <div class="rating" data-rating="5"></div>
         <p>"Highly recommend this product. Great value for the price!"</p>
       </div>
     </div>
@@ -251,13 +349,32 @@
 
   <!-- JavaScript -->
   <script>
-    // Function to change the main product image
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const toggleButton = document.querySelector('.dark-mode-toggle');
+      toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    }
+
+    // Shopping Cart
+    let cartCount = 0;
+    function addToCart(product) {
+      cartCount++;
+      document.querySelector('.cart-count').textContent = cartCount;
+      alert(`${product || 'Product'} added to cart!`);
+    }
+
+    function viewCart() {
+      alert(`You have ${cartCount} items in your cart.`);
+    }
+
+    // Change Product Image
     function changeImage(imageSrc) {
       const mainImage = document.getElementById('main-image');
       mainImage.src = imageSrc;
     }
 
-    // Function to show more product information
+    // Show More Info
     function showMoreInfo() {
       const moreInfo = document.getElementById('more-info');
       const learnMoreBtn = document.getElementById('learn-more-btn');
@@ -271,16 +388,16 @@
       }
     }
 
-    // Function to simulate a "Buy Now" action
-    function buyNow() {
-      alert('Thank you for your purchase! Redirecting to checkout...');
-      // You can add a redirect to a checkout page here
-    }
-
-    // Function to toggle FAQ answers
+    // Toggle FAQ Answers
     function toggleFAQ(item) {
       item.classList.toggle('active');
     }
+
+    // Dynamic Rating System
+    document.querySelectorAll('.rating').forEach(rating => {
+      const stars = '★★★★★';
+      rating.innerHTML = stars.slice(0, rating.dataset.rating);
+    });
   </script>
 </body>
 </html>
