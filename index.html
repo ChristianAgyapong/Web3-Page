@@ -24,6 +24,29 @@
       color: #fff;
     }
 
+    .logo-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff; /* White background for the banner */
+      padding: 20px 0; /* Increased padding for a larger banner */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-banner img {
+      height: 80px; /* Increased height for a larger logo */
+      width: auto;
+    }
+
+    body.dark-mode .logo-banner {
+      background-color: #2d2d2d; /* Darker banner background in dark mode */
+    }
+
     .product-container {
       background-color: #fff;
       padding: 20px;
@@ -32,6 +55,7 @@
       max-width: 800px;
       width: 100%;
       transition: background-color 0.3s, color 0.3s;
+      margin-top: 140px; /* Increased margin to avoid overlap with the larger banner */
     }
 
     body.dark-mode .product-container {
@@ -202,6 +226,11 @@
       color: #ddd; /* Light gray for dark mode */
     }
 
+    .rating {
+      color: #ffcc00; /* Yellow color for stars */
+      font-size: 1.2rem;
+    }
+
     .faq-section {
       margin: 20px 0;
     }
@@ -244,7 +273,7 @@
 
     .dark-mode-toggle {
       position: fixed;
-      top: 20px;
+      top: 120px; /* Adjusted to avoid overlap with the larger banner */
       right: 20px;
       background-color: #007bff;
       color: white;
@@ -262,7 +291,7 @@
 
     .cart {
       position: fixed;
-      top: 20px;
+      top: 120px; /* Adjusted to avoid overlap with the larger banner */
       left: 20px;
       background-color: #007bff;
       color: white;
@@ -297,10 +326,27 @@
         width: 80%;
         margin-bottom: 20px;
       }
+
+      .logo-banner img {
+        height: 60px; /* Smaller logo for mobile */
+      }
+
+      .product-container {
+        margin-top: 120px; /* Adjusted margin for mobile */
+      }
+
+      .dark-mode-toggle, .cart {
+        top: 100px; /* Adjusted for mobile */
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Logo Banner -->
+  <div class="logo-banner">
+    <img src="WEB.jpg" alt="Website Logo">
+  </div>
+
   <!-- Dark Mode Toggle -->
   <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
