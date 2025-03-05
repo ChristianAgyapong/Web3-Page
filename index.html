@@ -7,8 +7,8 @@
   <style>
     /* CSS Styles */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Arial', sans-serif;
+      background-color: #007bff; /* Bright blue background */
       margin: 0;
       padding: 0;
       display: flex;
@@ -20,7 +20,7 @@
     }
 
     body.dark-mode {
-      background-color: #333;
+      background-color: #1a1a1a; /* Darker background for better contrast */
       color: #fff;
     }
 
@@ -28,21 +28,23 @@
       background-color: #fff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
       max-width: 800px;
       width: 100%;
       transition: background-color 0.3s, color 0.3s;
     }
 
     body.dark-mode .product-container {
-      background-color: #444;
+      background-color: #2d2d2d; /* Darker container background */
       color: #fff;
     }
 
     h1 {
       text-align: center;
-      color: #333;
-      transition: color 0.3s;
+      color: #007bff; /* Bright blue for the title */
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600; /* Bold title */
     }
 
     body.dark-mode h1 {
@@ -63,7 +65,7 @@
     }
 
     #main-image:hover {
-      transform: scale(1.05);
+      transform: scale(1.02); /* Reduced hover effect */
     }
 
     .thumbnail-container {
@@ -84,7 +86,7 @@
 
     .thumbnail:hover {
       border-color: #007bff;
-      transform: scale(1.1);
+      transform: scale(1.05); /* Reduced hover effect */
     }
 
     .product-details {
@@ -93,6 +95,13 @@
 
     .product-details p {
       line-height: 1.6;
+      font-size: 1.1rem;
+      color: #555;
+      font-weight: 400; /* Normal weight for description */
+    }
+
+    body.dark-mode .product-details p {
+      color: #ddd; /* Light gray for dark mode */
     }
 
     button {
@@ -103,12 +112,13 @@
       border-radius: 5px;
       cursor: pointer;
       margin: 5px;
-      transition: background-color 0.3s, transform 0.3s;
+      transition: background-color 0.3s;
+      font-size: 1rem;
+      font-weight: 500; /* Medium weight for buttons */
     }
 
     button:hover {
       background-color: #0056b3;
-      transform: scale(1.05);
     }
 
     #more-info {
@@ -129,20 +139,33 @@
       padding: 20px;
       text-align: center;
       width: 30%;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: box-shadow 0.3s;
+    }
+
+    body.dark-mode .pricing-card {
+      background-color: #3d3d3d; /* Darker card background */
+      border-color: #555; /* Darker border for dark mode */
     }
 
     .pricing-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Reduced hover effect */
     }
 
     .pricing-card h3 {
       margin: 0 0 10px;
+      font-size: 1.5rem;
+      font-weight: 600; /* Bold for pricing card titles */
     }
 
     .pricing-card p {
       margin: 5px 0;
+      font-size: 1rem;
+      color: #555;
+      font-weight: 400; /* Normal weight for pricing details */
+    }
+
+    body.dark-mode .pricing-card p {
+      color: #ddd; /* Light gray for dark mode */
     }
 
     .reviews-section {
@@ -155,16 +178,28 @@
       border-radius: 10px;
       padding: 15px;
       margin: 10px 0;
-      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .review:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    body.dark-mode .review {
+      background-color: #3d3d3d; /* Darker review background */
+      border-color: #555; /* Darker border for dark mode */
     }
 
     .review h4 {
       margin: 0 0 10px;
+      font-size: 1.2rem;
+      font-weight: 600; /* Bold for reviewer names */
+    }
+
+    .review p {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+      font-weight: 400; /* Normal weight for review text */
+    }
+
+    body.dark-mode .review p {
+      color: #ddd; /* Light gray for dark mode */
     }
 
     .faq-section {
@@ -178,21 +213,29 @@
       padding: 15px;
       margin: 10px 0;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
     }
 
-    .faq-item:hover {
-      background-color: #eee;
-      transform: translateX(10px);
+    body.dark-mode .faq-item {
+      background-color: #3d3d3d; /* Darker FAQ background */
+      border-color: #555; /* Darker border for dark mode */
     }
 
     .faq-item h4 {
       margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600; /* Bold for FAQ questions */
     }
 
     .faq-item p {
       display: none;
       margin: 10px 0 0;
+      font-size: 1rem;
+      color: #555;
+      font-weight: 400; /* Normal weight for FAQ answers */
+    }
+
+    body.dark-mode .faq-item p {
+      color: #ddd; /* Light gray for dark mode */
     }
 
     .faq-item.active p {
@@ -209,12 +252,12 @@
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
+      transition: background-color 0.3s;
+      font-weight: 500; /* Medium weight for toggle button */
     }
 
     .dark-mode-toggle:hover {
       background-color: #0056b3;
-      transform: scale(1.1);
     }
 
     .cart {
@@ -227,12 +270,12 @@
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
+      transition: background-color 0.3s;
+      font-weight: 500; /* Medium weight for cart button */
     }
 
     .cart:hover {
       background-color: #0056b3;
-      transform: scale(1.1);
     }
 
     .cart-count {
@@ -266,7 +309,7 @@
 
   <!-- Product Container -->
   <div class="product-container">
-    <h1>My Awesome Product</h1>
+    <h1>Product Page</h1>
     <div class="product-gallery">
       <img id="main-image" src="product4.jpg" alt="Product Image">
       <div class="thumbnail-container">
