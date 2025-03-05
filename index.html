@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .product-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .product-gallery {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #main-image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .thumbnail-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .thumbnail {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .thumbnail:hover {
+      border-color: #007bff;
+    }
+
+    .product-details {
+      margin-bottom: 20px;
+    }
+
+    .product-details p {
+      line-height: 1.6;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #more-info {
+      margin-top: 10px;
+    }
+
+    .pricing-table {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+
+    .pricing-card {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      width: 30%;
+    }
+
+    .pricing-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .pricing-card p {
+      margin: 5px 0;
+    }
+
+    .reviews-section {
+      margin: 20px 0;
+    }
+
+    .review {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    .review h4 {
+      margin: 0 0 10px;
+    }
+
+    .faq-section {
+      margin: 20px 0;
+    }
+
+    .faq-item {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    .faq-item h4 {
+      margin: 0;
+    }
+
+    .faq-item p {
+      display: none;
+      margin: 10px 0 0;
+    }
+
+    .faq-item.active p {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-table {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .pricing-card {
+        width: 80%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML Structure -->
+  <div class="product-container">
+    <h1>My Awesome Product</h1>
+    <div class="product-gallery">
+      <img id="main-image" src="https://via.placeholder.com/400" alt="Product Image">
+      <div class="thumbnail-container">
+        <img src="https://via.placeholder.com/400" alt="Thumbnail 1" class="thumbnail" onclick="changeImage('https://via.placeholder.com/400')">
+        <img src="https://via.placeholder.com/400/ff0000" alt="Thumbnail 2" class="thumbnail" onclick="changeImage('https://via.placeholder.com/400/ff0000')">
+        <img src="https://via.placeholder.com/400/00ff00" alt="Thumbnail 3" class="thumbnail" onclick="changeImage('https://via.placeholder.com/400/00ff00')">
+      </div>
+    </div>
+    <div class="product-details">
+      <p id="product-description">
+        This is an amazing product that solves all your problems! It's sleek, modern, and highly efficient. 
+        Perfect for everyday use.
+      </p>
+      <button id="learn-more-btn" onclick="showMoreInfo()">Learn More</button>
+      <div id="more-info" style="display: none;">
+        <p>Additional details about the product:</p>
+        <ul>
+          <li>Feature 1: High durability</li>
+          <li>Feature 2: Eco-friendly materials</li>
+          <li>Feature 3: 2-year warranty</li>
+        </ul>
+      </div>
+      <button id="buy-now-btn" onclick="buyNow()">Buy Now</button>
+    </div>
+
+    <!-- Pricing Table -->
+    <div class="pricing-table">
+      <div class="pricing-card">
+        <h3>Basic</h3>
+        <p>$19.99</p>
+        <p>Includes basic features</p>
+        <button onclick="buyNow()">Buy Basic</button>
+      </div>
+      <div class="pricing-card">
+        <h3>Standard</h3>
+        <p>$39.99</p>
+        <p>Includes advanced features</p>
+        <button onclick="buyNow()">Buy Standard</button>
+      </div>
+      <div class="pricing-card">
+        <h3>Premium</h3>
+        <p>$59.99</p>
+        <p>Includes all features</p>
+        <button onclick="buyNow()">Buy Premium</button>
+      </div>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div class="reviews-section">
+      <h2>Customer Reviews</h2>
+      <div class="review">
+        <h4>John Doe</h4>
+        <p>"This product is amazing! It has completely changed the way I work."</p>
+      </div>
+      <div class="review">
+        <h4>Jane Smith</h4>
+        <p>"Highly recommend this product. Great value for the price!"</p>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <h4>What is the return policy?</h4>
+        <p>We offer a 30-day money-back guarantee if you're not satisfied with the product.</p>
+      </div>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <h4>Is this product eco-friendly?</h4>
+        <p>Yes, our product is made from 100% eco-friendly materials.</p>
+      </div>
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <h4>How do I contact support?</h4>
+        <p>You can reach our support team at support@example.com.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Function to change the main product image
+    function changeImage(imageSrc) {
+      const mainImage = document.getElementById('main-image');
+      mainImage.src = imageSrc;
+    }
+
+    // Function to show more product information
+    function showMoreInfo() {
+      const moreInfo = document.getElementById('more-info');
+      const learnMoreBtn = document.getElementById('learn-more-btn');
+
+      if (moreInfo.style.display === 'none') {
+        moreInfo.style.display = 'block';
+        learnMoreBtn.textContent = 'Show Less';
+      } else {
+        moreInfo.style.display = 'none';
+        learnMoreBtn.textContent = 'Learn More';
+      }
+    }
+
+    // Function to simulate a "Buy Now" action
+    function buyNow() {
+      alert('Thank you for your purchase! Redirecting to checkout...');
+      // You can add a redirect to a checkout page here
+    }
+
+    // Function to toggle FAQ answers
+    function toggleFAQ(item) {
+      item.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
