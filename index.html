@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Page</title>
   <style>
-    /* CSS Styles */
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #007bff; /* Bright blue background */
+      background-color: #007bff;
       margin: 0;
       padding: 0;
       display: flex;
@@ -20,7 +19,7 @@
     }
 
     body.dark-mode {
-      background-color: #1a1a1a; /* Darker background for better contrast */
+      background-color: #1a1a1a;
       color: #fff;
     }
 
@@ -29,8 +28,8 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100px; /* Fixed height for the top pane */
-      background-color: #000; /* Black background for the top pane */
+      height: 100px;
+      background-color: #000;
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -57,20 +56,20 @@
       max-width: 800px;
       width: 100%;
       transition: background-color 0.3s, color 0.3s;
-      margin-top: 120px; /* Adjusted margin to avoid overlap with the top pane */
+      margin-top: 120px;
     }
 
     body.dark-mode .product-container {
-      background-color: #2d2d2d; /* Darker container background */
+      background-color: #2d2d2d;
       color: #fff;
     }
 
     h1 {
       text-align: center;
-      color: #007bff; /* Bright blue for the title */
+      color: #007bff;
       font-size: 2.5rem;
       margin-bottom: 20px;
-      font-weight: 600; /* Bold title */
+      font-weight: 600;
     }
 
     body.dark-mode h1 {
@@ -91,7 +90,7 @@
     }
 
     #main-image:hover {
-      transform: scale(1.02); /* Reduced hover effect */
+      transform: scale(1.02);
     }
 
     .thumbnail-container {
@@ -112,22 +111,18 @@
 
     .thumbnail:hover {
       border-color: #007bff;
-      transform: scale(1.05); /* Reduced hover effect */
-    }
-
-    .product-details {
-      margin-bottom: 20px;
+      transform: scale(1.05);
     }
 
     .product-details p {
       line-height: 1.6;
       font-size: 1.1rem;
       color: #555;
-      font-weight: 400; /* Normal weight for description */
+      font-weight: 400;
     }
 
     body.dark-mode .product-details p {
-      color: #ddd; /* Light gray for dark mode */
+      color: #ddd;
     }
 
     button {
@@ -140,7 +135,7 @@
       margin: 5px;
       transition: background-color 0.3s;
       font-size: 1rem;
-      font-weight: 500; /* Medium weight for buttons */
+      font-weight: 500;
     }
 
     button:hover {
@@ -169,36 +164,36 @@
     }
 
     body.dark-mode .pricing-card {
-      background-color: #3d3d3d; /* Darker card background */
-      border-color: #555; /* Darker border for dark mode */
+      background-color: #3d3d3d;
+      border-color: #555;
     }
 
     .pricing-card:hover {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Reduced hover effect */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .pricing-card h3 {
       margin: 0 0 10px;
       font-size: 1.5rem;
-      font-weight: 600; /* Bold for pricing card titles */
+      font-weight: 600;
     }
 
     .pricing-card p {
       margin: 5px 0;
       font-size: 1rem;
       color: #555;
-      font-weight: 400; /* Normal weight for pricing details */
+      font-weight: 400;
     }
 
     body.dark-mode .pricing-card p {
-      color: #ddd; /* Light gray for dark mode */
+      color: #ddd;
     }
 
-    .reviews-section {
+    .reviews-section, .faq-section {
       margin: 20px 0;
     }
 
-    .review {
+    .review, .faq-item {
       background-color: #f9f9f9;
       border: 1px solid #ddd;
       border-radius: 10px;
@@ -206,77 +201,45 @@
       margin: 10px 0;
     }
 
-    body.dark-mode .review {
-      background-color: #3d3d3d; /* Darker review background */
-      border-color: #555; /* Darker border for dark mode */
+    body.dark-mode .review, body.dark-mode .faq-item {
+      background-color: #3d3d3d;
+      border-color: #555;
     }
 
-    .review h4 {
+    .review h4, .faq-item h4 {
       margin: 0 0 10px;
       font-size: 1.2rem;
-      font-weight: 600; /* Bold for reviewer names */
+      font-weight: 600;
     }
 
-    .review p {
+    .review p, .faq-item p {
       margin: 0;
       font-size: 1rem;
       color: #555;
-      font-weight: 400; /* Normal weight for review text */
+      font-weight: 400;
     }
 
-    body.dark-mode .review p {
-      color: #ddd; /* Light gray for dark mode */
-    }
-
-    .rating {
-      color: #ffcc00; /* Yellow color for stars */
-      font-size: 1.2rem;
-    }
-
-    .faq-section {
-      margin: 20px 0;
-    }
-
-    .faq-item {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-
-    body.dark-mode .faq-item {
-      background-color: #3d3d3d; /* Darker FAQ background */
-      border-color: #555; /* Darker border for dark mode */
-    }
-
-    .faq-item h4 {
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: 600; /* Bold for FAQ questions */
+    body.dark-mode .review p, body.dark-mode .faq-item p {
+      color: #ddd;
     }
 
     .faq-item p {
       display: none;
       margin: 10px 0 0;
-      font-size: 1rem;
-      color: #555;
-      font-weight: 400; /* Normal weight for FAQ answers */
-    }
-
-    body.dark-mode .faq-item p {
-      color: #ddd; /* Light gray for dark mode */
     }
 
     .faq-item.active p {
       display: block;
     }
 
-    .dark-mode-toggle {
+    .rating {
+      color: #ffcc00; /* Yellow-gold color for stars */
+      font-size: 1.2rem;
+    }
+
+    .dark-mode-toggle, .cart {
       position: fixed;
-      top: 120px; /* Adjusted to avoid overlap with the top pane */
-      right: 20px;
+      top: 120px;
       background-color: #007bff;
       color: white;
       border: none;
@@ -284,29 +247,19 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s;
-      font-weight: 500; /* Medium weight for toggle button */
+      font-weight: 500;
     }
 
-    .dark-mode-toggle:hover {
+    .dark-mode-toggle:hover, .cart:hover {
       background-color: #0056b3;
+    }
+
+    .dark-mode-toggle {
+      right: 20px;
     }
 
     .cart {
-      position: fixed;
-      top: 120px; /* Adjusted to avoid overlap with the top pane */
       left: 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-weight: 500; /* Medium weight for cart button */
-    }
-
-    .cart:hover {
-      background-color: #0056b3;
     }
 
     .cart-count {
@@ -330,32 +283,27 @@
       }
 
       .top-pane {
-        height: 80px; /* Smaller top pane for mobile */
+        height: 80px;
       }
 
       .product-container {
-        margin-top: 100px; /* Adjusted margin for mobile */
+        margin-top: 100px;
       }
 
       .dark-mode-toggle, .cart {
-        top: 100px; /* Adjusted for mobile */
+        top: 100px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Black Top Pane with Home Button -->
   <div class="top-pane">
-    <a href="First.html">Home</a> <!-- Link to the home page -->
+    <a href="First.html">Home</a>
   </div>
 
-  <!-- Dark Mode Toggle -->
   <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-
-  <!-- Shopping Cart -->
   <button class="cart" onclick="viewCart()">🛒 Cart <span class="cart-count">0</span></button>
 
-  <!-- Product Container -->
   <div class="product-container">
     <h1>Product Page</h1>
     <div class="product-gallery">
@@ -383,7 +331,6 @@
       <button id="buy-now-btn" onclick="addToCart()">Add to Cart</button>
     </div>
 
-    <!-- Pricing Table -->
     <div class="pricing-table">
       <div class="pricing-card">
         <h3>Basic</h3>
@@ -405,7 +352,6 @@
       </div>
     </div>
 
-    <!-- Customer Reviews -->
     <div class="reviews-section">
       <h2>Customer Reviews</h2>
       <div class="review">
@@ -420,7 +366,6 @@
       </div>
     </div>
 
-    <!-- FAQ Section -->
     <div class="faq-section">
       <h2>Frequently Asked Questions</h2>
       <div class="faq-item" onclick="toggleFAQ(this)">
@@ -438,16 +383,13 @@
     </div>
   </div>
 
-  <!-- JavaScript -->
   <script>
-    // Dark Mode Toggle
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
       const toggleButton = document.querySelector('.dark-mode-toggle');
       toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
     }
 
-    // Shopping Cart
     let cartCount = 0;
     function addToCart(product) {
       cartCount++;
@@ -459,13 +401,11 @@
       alert(`You have ${cartCount} items in your cart.`);
     }
 
-    // Change Product Image
     function changeImage(imageSrc) {
       const mainImage = document.getElementById('main-image');
       mainImage.src = imageSrc;
     }
 
-    // Show More Info
     function showMoreInfo() {
       const moreInfo = document.getElementById('more-info');
       const learnMoreBtn = document.getElementById('learn-more-btn');
@@ -479,12 +419,10 @@
       }
     }
 
-    // Toggle FAQ Answers
     function toggleFAQ(item) {
       item.classList.toggle('active');
     }
 
-    // Dynamic Rating System
     document.querySelectorAll('.rating').forEach(rating => {
       const stars = '★★★★★';
       rating.innerHTML = stars.slice(0, rating.dataset.rating);
