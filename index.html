@@ -7,7 +7,8 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #1e3c72;
+      background-color: #1a1a1a; /* Dark mode background */
+      color: #fff; /* Dark mode text color */
       margin: 0;
       padding: 0;
       display: flex;
@@ -15,12 +16,6 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.dark-mode {
-      background-color: #1a1a1a;
-      color: #fff;
     }
 
     .top-pane {
@@ -49,19 +44,14 @@
     }
 
     .product-container {
-      background-color: #fff;
+      background-color: #2d2d2d; /* Dark mode container background */
+      color: #fff; /* Dark mode text color */
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
       max-width: 800px;
       width: 100%;
-      transition: background-color 0.3s, color 0.3s;
       margin-top: 120px;
-    }
-
-    body.dark-mode .product-container {
-      background-color: #2d2d2d;
-      color: #fff;
     }
 
     h1 {
@@ -70,10 +60,6 @@
       font-size: 2.5rem;
       margin-bottom: 20px;
       font-weight: 600;
-    }
-
-    body.dark-mode h1 {
-      color: #fff;
     }
 
     .product-gallery {
@@ -114,15 +100,22 @@
       transform: scale(1.05);
     }
 
+    .product-details {
+      text-align: center; /* Center-align text and buttons */
+    }
+
     .product-details p {
       line-height: 1.6;
       font-size: 1.1rem;
-      color: #555;
+      color: #ddd; /* Dark mode text color */
       font-weight: 400;
+      margin-bottom: 20px; /* Add spacing below the description */
     }
 
-    body.dark-mode .product-details p {
-      color: #ddd;
+    .button-container {
+      display: flex;
+      justify-content: center; /* Center-align buttons */
+      gap: 10px; /* Add spacing between buttons */
     }
 
     button {
@@ -132,7 +125,6 @@
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
-      margin: 5px;
       transition: background-color 0.3s;
       font-size: 1rem;
       font-weight: 500;
@@ -145,6 +137,7 @@
     #more-info {
       margin-top: 10px;
       transition: opacity 0.3s;
+      text-align: left; /* Align additional info text to the left */
     }
 
     .pricing-table {
@@ -154,18 +147,13 @@
     }
 
     .pricing-card {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
+      background-color: #3d3d3d; /* Dark mode card background */
+      border: 1px solid #555; /* Dark mode border color */
       border-radius: 10px;
       padding: 20px;
       text-align: center;
       width: 30%;
       transition: box-shadow 0.3s;
-    }
-
-    body.dark-mode .pricing-card {
-      background-color: #3d3d3d;
-      border-color: #555;
     }
 
     .pricing-card:hover {
@@ -181,12 +169,8 @@
     .pricing-card p {
       margin: 5px 0;
       font-size: 1rem;
-      color: #555;
+      color: #ddd; /* Dark mode text color */
       font-weight: 400;
-    }
-
-    body.dark-mode .pricing-card p {
-      color: #ddd;
     }
 
     .reviews-section, .faq-section {
@@ -194,16 +178,11 @@
     }
 
     .review, .faq-item {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
+      background-color: #3d3d3d; /* Dark mode background */
+      border: 1px solid #555; /* Dark mode border color */
       border-radius: 10px;
       padding: 15px;
       margin: 10px 0;
-    }
-
-    body.dark-mode .review, body.dark-mode .faq-item {
-      background-color: #3d3d3d;
-      border-color: #555;
     }
 
     .review h4, .faq-item h4 {
@@ -215,12 +194,8 @@
     .review p, .faq-item p {
       margin: 0;
       font-size: 1rem;
-      color: #555;
+      color: #ddd; /* Dark mode text color */
       font-weight: 400;
-    }
-
-    body.dark-mode .review p, body.dark-mode .faq-item p {
-      color: #ddd;
     }
 
     .faq-item p {
@@ -237,9 +212,10 @@
       font-size: 1.2rem;
     }
 
-    .dark-mode-toggle, .cart {
+    .cart {
       position: fixed;
       top: 120px;
+      left: 20px;
       background-color: #007bff;
       color: white;
       border: none;
@@ -250,16 +226,8 @@
       font-weight: 500;
     }
 
-    .dark-mode-toggle:hover, .cart:hover {
+    .cart:hover {
       background-color: #0056b3;
-    }
-
-    .dark-mode-toggle {
-      right: 20px;
-    }
-
-    .cart {
-      left: 20px;
     }
 
     .cart-count {
@@ -290,7 +258,7 @@
         margin-top: 100px;
       }
 
-      .dark-mode-toggle, .cart {
+      .cart {
         top: 100px;
       }
     }
@@ -301,7 +269,6 @@
     <a href="First.html">Home</a>
   </div>
 
-  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
   <button class="cart" onclick="viewCart()">🛒 Cart <span class="cart-count">0</span></button>
 
   <div class="product-container">
@@ -319,7 +286,10 @@
         This is an amazing product that solves all your problems! It's sleek, modern, and highly efficient. 
         Perfect for everyday use.
       </p>
-      <button id="learn-more-btn" onclick="showMoreInfo()">Learn More</button>
+      <div class="button-container">
+        <button id="learn-more-btn" onclick="showMoreInfo()">Learn More</button>
+        <button id="buy-now-btn" onclick="addToCart()">Add to Cart</button>
+      </div>
       <div id="more-info" style="display: none;">
         <p>Additional details about the product:</p>
         <ul>
@@ -328,7 +298,6 @@
           <li>Feature 3: 2-year warranty</li>
         </ul>
       </div>
-      <button id="buy-now-btn" onclick="addToCart()">Add to Cart</button>
     </div>
 
     <div class="pricing-table">
@@ -384,12 +353,6 @@
   </div>
 
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-      const toggleButton = document.querySelector('.dark-mode-toggle');
-      toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
-    }
-
     let cartCount = 0;
     function addToCart(product) {
       cartCount++;
