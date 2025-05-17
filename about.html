@@ -12,14 +12,13 @@
             min-height: 100vh;
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            color: #23272f;
-            /* Lighter, more subtle background */
-            background: #f8f9ff url('https://www.transparenttextures.com/patterns/flowers.png');
+            color: #222;
+            background: #fff url('https://www.transparenttextures.com/patterns/flowers.png');
             background-size: 220px 220px;
             background-repeat: repeat;
         }
         header {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255,255,255,0.97);
             padding: 18px 0 10px 0;
             position: fixed;
             width: 100%;
@@ -57,11 +56,11 @@
         }
         main {
             padding: 120px 16px 40px 16px;
-            max-width: 850px;
+            max-width: 900px;
             margin: auto;
         }
         .about-card {
-            background: rgba(255,255,255,0.96);
+            background: #fff;
             padding: 36px 28px 32px 28px;
             border-radius: 18px;
             box-shadow: 0 6px 32px rgba(42,82,152,0.10);
@@ -385,17 +384,15 @@
             .skills, ul.hobbies-list { flex-direction: column; gap: 8px;}
         }
 
-        /* Adjust vector shapes for subtlety */
+        /* Vector shapes */
         .vector-shape {
             position: absolute;
-            /* Softer gradient colors */
             background: linear-gradient(45deg, rgba(76, 175, 80, 0.3), rgba(42, 82, 152, 0.3));
             border-radius: 50%;
             filter: blur(60px);
             opacity: 0.4;
         }
 
-        /* Slower, more subtle floating animations */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -424,10 +421,38 @@
             animation: float 12s ease-in-out infinite; 
         }
 
-        /* Soften card backgrounds */
+        /* Loading Animation */
+        .loading-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Achievement Cards */
         .achievement-card {
             background: rgba(255, 255, 255, 0.95);
-            /* Softer shadow */
             box-shadow: 0 4px 20px rgba(42,82,152,0.08);
         }
 
@@ -436,33 +461,6 @@
             box-shadow: 0 6px 24px rgba(42,82,152,0.12);
         }
 
-        /* Adjust testimonial cards */
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.97);
-            box-shadow: 0 4px 20px rgba(42,82,152,0.08);
-        }
-
-        /* More subtle skill card hover effect */
-        .skill-card::before {
-            background: linear-gradient(90deg, #4CAF50, #2a5298);
-            opacity: 0.9;
-        }
-
-        .skill-card:hover {
-            transform: translateX(3px);
-        }
-
-        /* Certificate card adjustments */
-        .certificate-card {
-            background: rgba(255, 255, 255, 0.97);
-            box-shadow: 0 4px 20px rgba(42,82,152,0.08);
-        }
-
-        .certificate-card:hover {
-            transform: scale(1.03);
-        }
-
-        /* Enhanced Section Styles */
         .achievement-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -477,9 +475,15 @@
             margin-bottom: 16px;
         }
 
+        /* Testimonial Cards */
         .testimonial-section {
             margin: 48px 0;
             position: relative;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 4px 20px rgba(42,82,152,0.08);
         }
 
         .testimonial-quote {
@@ -516,12 +520,21 @@
             color: #666;
         }
 
-        /* Certificate Section */
+        /* Certificate Cards */
         .certificate-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 24px;
             margin: 32px 0;
+        }
+
+        .certificate-card {
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 4px 20px rgba(42,82,152,0.08);
+        }
+
+        .certificate-card:hover {
+            transform: scale(1.03);
         }
 
         .certificate-image {
@@ -545,36 +558,6 @@
             color: #666;
         }
 
-        /* Loading Animation */
-        .loading-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #4CAF50;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive Enhancements */
         @media (max-width: 700px) {
             .achievement-grid,
             .certificate-grid {
@@ -596,212 +579,283 @@
     </div>
 
     <!-- Loading Animation -->
-    <div class="loading-animation">
-        <div class="loading-spinner"></div>
+    <div class="fixed inset-0 bg-white flex justify-center items-center z-50 transition-opacity duration-500" id="loading">
+        <div class="w-12 h-12 border-4 border-gray-200 border-t-secondary-300 rounded-full animate-spin"></div>
     </div>
 
-    <header>
-        <h1>About Me</h1>
-        <nav>
-            <a href="First.html">Home</a>
-            <a href="about.html" class="active">About</a>
-            <a href="skills.html">Skills</a>
-            <a href="CINES.html">Movies</a>
-            <a href="index.html">Products</a>
+    <header class="fixed top-0 left-0 w-full bg-white/95 py-4 shadow-soft z-50">
+        <h1 class="text-3xl font-bold text-primary-600 text-center tracking-wider mb-1">About Me</h1>
+        <nav class="flex justify-center gap-4 mt-2">
+            <a href="First.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="skills.html" class="nav-link">Skills</a>
+            <a href="CINES.html" class="nav-link">Movies</a>
+            <a href="index.html" class="nav-link">Products</a>
         </nav>
     </header>
-    <main>
-        <section class="about-card" data-aos="fade-up">
-            <img src="Christ1.jpg" alt="Christian Agyapong" class="profile-img">
+
+    <main class="pt-32 px-4 pb-10 max-w-4xl mx-auto">
+        <section class="card" data-aos="fade-up">
+            <img src="Christ1.jpg" alt="Christian Agyapong" class="w-32 h-32 rounded-full object-cover border-4 border-primary-500 mb-6 mx-auto shadow-soft hover:scale-105 transition-transform duration-300">
+            
             <h2 class="section-title">Who Am I?</h2>
-            <p class="about-text">
+            <p class="text-center text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
                 Hi, I'm <strong>Christian Agyapong</strong>, a passionate <strong>Computer Science student</strong> specializing in <strong>full-stack web development</strong> and <strong>UI/UX design</strong>. I thrive on solving complex problems and turning ideas into reality through code and design.
             </p>
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-number">3+</div>
-                    <div class="stat-label">Years Experience</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="card bg-primary-50">
+                    <div class="text-3xl font-bold text-primary-600 mb-2">3+</div>
+                    <div class="text-secondary-500 font-medium">Years Experience</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Projects Completed</div>
+                <div class="card bg-primary-50">
+                    <div class="text-3xl font-bold text-primary-600 mb-2">50+</div>
+                    <div class="text-secondary-500 font-medium">Projects Completed</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Client Satisfaction</div>
+                <div class="card bg-primary-50">
+                    <div class="text-3xl font-bold text-primary-600 mb-2">100%</div>
+                    <div class="text-secondary-500 font-medium">Client Satisfaction</div>
                 </div>
             </div>
+
+            <!-- Journey Section -->
             <h2 class="section-title">My Journey</h2>
-            <div class="timeline">
+            <div class="space-y-6">
                 <div class="timeline-item">
-                    <div class="timeline-date">2021 - Present</div>
-                    <h3>Computer Science Student</h3>
-                    <p>Pursuing my passion for technology and software development</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2020 - 2021</div>
-                    <h3>Web Development Intern</h3>
-                    <p>Gained practical experience in modern web technologies</p>
+                    <div class="text-primary-600 font-semibold">2021 - Present</div>
+                    <h3 class="text-xl font-semibold mb-2">Computer Science Student</h3>
+                    <p class="text-gray-600">Pursuing my passion for technology and software development</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">2019 - 2020</div>
-                    <h3>Self-Taught Developer</h3>
-                    <p>Started my coding journey through online courses and personal projects</p>
+                    <div class="text-primary-600 font-semibold">2020 - 2021</div>
+                    <h3 class="text-xl font-semibold mb-2">Web Development Intern</h3>
+                    <p class="text-gray-600">Gained practical experience in modern web technologies</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-primary-600 font-semibold">2019 - 2020</div>
+                    <h3 class="text-xl font-semibold mb-2">Self-Taught Developer</h3>
+                    <p class="text-gray-600">Started my coding journey through online courses and personal projects</p>
                 </div>
             </div>
-            <h2 class="section-title">Tech Stack</h2>
-            <div class="skills">
-                <div class="skill-card">HTML & CSS</div>
-                <div class="skill-card">JavaScript (React, Node.js)</div>
-                <div class="skill-card">PHP & MySQL</div>
-                <div class="skill-card">UI/UX Design</div>
-                <div class="skill-card">Graphic Design</div>
+
+            <!-- Tech Stack Section -->
+            <h2 class="section-title mt-12">Tech Stack</h2>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <div class="skill-badge">HTML & CSS</div>
+                <div class="skill-badge">JavaScript (React, Node.js)</div>
+                <div class="skill-badge">PHP & MySQL</div>
+                <div class="skill-badge">UI/UX Design</div>
+                <div class="skill-badge">Graphic Design</div>
             </div>
-            <div class="progress-container">
+
+            <!-- Progress Bars -->
+            <div class="max-w-xl mx-auto space-y-4">
                 <div>
-                    <span>HTML & CSS</span>
-                    <div class="progress-bar"><div class="progress-bar-fill" data-width="95%">95%</div></div>
-                </div>
-                <div>
-                    <span>JavaScript</span>
-                    <div class="progress-bar"><div class="progress-bar-fill" data-width="90%">90%</div></div>
-                </div>
-                <div>
-                    <span>PHP & MySQL</span>
-                    <div class="progress-bar"><div class="progress-bar-fill" data-width="80%">80%</div></div>
-                </div>
-                <div>
-                    <span>UI/UX Design</span>
-                    <div class="progress-bar"><div class="progress-bar-fill" data-width="85%">85%</div></div>
-                </div>
-            </div>
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <img src="https://source.unsplash.com/600x400/?webdesign" alt="Project 1" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">E-Commerce Platform</h3>
-                        <p class="project-description">A full-stack e-commerce solution with modern UI/UX design</p>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-700">HTML & CSS</span>
+                        <span class="text-primary-600">95%</span>
+                    </div>
+                    <div class="h-2 bg-primary-100 rounded-full overflow-hidden">
+                        <div class="progress-bar-fill h-full bg-gradient-to-r from-primary-500 to-secondary-300" data-width="95%"></div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <img src="https://source.unsplash.com/600x400/?coding" alt="Project 2" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Task Management App</h3>
-                        <p class="project-description">A responsive web application for managing daily tasks</p>
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-700">JavaScript</span>
+                        <span class="text-primary-600">90%</span>
+                    </div>
+                    <div class="h-2 bg-primary-100 rounded-full overflow-hidden">
+                        <div class="progress-bar-fill h-full bg-gradient-to-r from-primary-500 to-secondary-300" data-width="90%"></div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <img src="https://source.unsplash.com/600x400/?technology" alt="Project 3" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Portfolio Website</h3>
-                        <p class="project-description">A modern portfolio showcasing my work and skills</p>
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-700">PHP & MySQL</span>
+                        <span class="text-primary-600">80%</span>
+                    </div>
+                    <div class="h-2 bg-primary-100 rounded-full overflow-hidden">
+                        <div class="progress-bar-fill h-full bg-gradient-to-r from-primary-500 to-secondary-300" data-width="80%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-700">UI/UX Design</span>
+                        <span class="text-primary-600">85%</span>
+                    </div>
+                    <div class="h-2 bg-primary-100 rounded-full overflow-hidden">
+                        <div class="progress-bar-fill h-full bg-gradient-to-r from-primary-500 to-secondary-300" data-width="85%"></div>
                     </div>
                 </div>
             </div>
-            <h2 class="section-title">Hobbies & Interests</h2>
-            <ul class="hobbies-list">
-                <li>🎵 Music Production</li>
-                <li>🎮 Gaming</li>
-                <li>📚 Reading Tech Blogs</li>
-                <li>🏀 Basketball</li>
-                <li>✈️ Traveling</li>
-            </ul>
-            <h2 class="section-title">FAQ</h2>
-            <div class="faq">
-                <div class="faq-item">
-                    <button class="faq-question">What programming languages do you use?</button>
-                    <div class="faq-answer">Mainly JavaScript (React, Node.js), PHP, and Python for scripting.</div>
+
+            <!-- Projects Section -->
+            <h2 class="section-title mt-12">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card overflow-hidden group">
+                    <img src="https://source.unsplash.com/600x400/?webdesign" alt="Project 1" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-600 mb-2">E-Commerce Platform</h3>
+                        <p class="text-gray-600">A full-stack e-commerce solution with modern UI/UX design</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-question">Are you available for freelance work?</button>
-                    <div class="faq-answer">Yes! Feel free to contact me using the form below.</div>
+                <div class="card overflow-hidden group">
+                    <img src="https://source.unsplash.com/600x400/?coding" alt="Project 2" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-600 mb-2">Task Management App</h3>
+                        <p class="text-gray-600">A responsive web application for managing daily tasks</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-question">What inspires your designs?</button>
-                    <div class="faq-answer">Modern trends, user feedback, and a passion for clean, functional interfaces.</div>
+                <div class="card overflow-hidden group">
+                    <img src="https://source.unsplash.com/600x400/?technology" alt="Project 3" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-600 mb-2">Portfolio Website</h3>
+                        <p class="text-gray-600">A modern portfolio showcasing my work and skills</p>
+                    </div>
                 </div>
             </div>
-            <h2 class="section-title">Get in Touch</h2>
-            <form class="contact-form">
-                <div class="form-group">
+
+            <!-- Hobbies Section -->
+            <h2 class="section-title mt-12">Hobbies & Interests</h2>
+            <div class="flex flex-wrap gap-4">
+                <div class="bg-primary-50 px-4 py-2 rounded-lg text-primary-600 flex items-center gap-2">
+                    <span>🎵</span> Music Production
+                </div>
+                <div class="bg-primary-50 px-4 py-2 rounded-lg text-primary-600 flex items-center gap-2">
+                    <span>🎮</span> Gaming
+                </div>
+                <div class="bg-primary-50 px-4 py-2 rounded-lg text-primary-600 flex items-center gap-2">
+                    <span>📚</span> Reading Tech Blogs
+                </div>
+                <div class="bg-primary-50 px-4 py-2 rounded-lg text-primary-600 flex items-center gap-2">
+                    <span>🏀</span> Basketball
+                </div>
+                <div class="bg-primary-50 px-4 py-2 rounded-lg text-primary-600 flex items-center gap-2">
+                    <span>✈️</span> Traveling
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <h2 class="section-title mt-12">FAQ</h2>
+            <div class="space-y-4 max-w-2xl mx-auto">
+                <div class="card">
+                    <button class="w-full text-left font-semibold text-primary-600 focus:outline-none">
+                        What programming languages do you use?
+                    </button>
+                    <div class="mt-2 text-gray-600 hidden">
+                        Mainly JavaScript (React, Node.js), PHP, and Python for scripting.
+                    </div>
+                </div>
+                <div class="card">
+                    <button class="w-full text-left font-semibold text-primary-600 focus:outline-none">
+                        Are you available for freelance work?
+                    </button>
+                    <div class="mt-2 text-gray-600 hidden">
+                        Yes! Feel free to contact me using the form below.
+                    </div>
+                </div>
+                <div class="card">
+                    <button class="w-full text-left font-semibold text-primary-600 focus:outline-none">
+                        What inspires your designs?
+                    </button>
+                    <div class="mt-2 text-gray-600 hidden">
+                        Modern trends, user feedback, and a passion for clean, functional interfaces.
+                    </div>
+                </div>
+                <div class="card">
+                    <button class="w-full text-left font-semibold text-primary-600 focus:outline-none">
+                        How can I contact you?
+                    </button>
+                    <div class="mt-2 text-gray-600 hidden">
+                        Use the contact form below or reach out via LinkedIn or GitHub.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <h2 class="section-title mt-12">Get in Touch</h2>
+            <form class="max-w-xl mx-auto space-y-4">
+                <div>
                     <input type="text" class="form-input" placeholder="Your Name" required>
                 </div>
-                <div class="form-group">
+                <div>
                     <input type="email" class="form-input" placeholder="Your Email" required>
                 </div>
-                <div class="form-group">
+                <div>
                     <textarea class="form-input" rows="4" placeholder="Your Message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="btn-primary w-full">Send Message</button>
             </form>
-            <div class="social-links">
-                <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/feed/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://x.com/explore" target="_blank"><i class="fab fa-twitter"></i></a>
-            </div>
-            <a href="First.html" class="back-home">Back to Home</a>
 
-            <!-- New Achievements Section -->
-            <h2 class="section-title">Achievements</h2>
-            <div class="achievement-grid">
-                <div class="achievement-card" data-aos="fade-right">
-                    <i class="fas fa-trophy achievement-icon"></i>
-                    <h3>Best Developer Award</h3>
-                    <p>Recognized for outstanding contributions to web development</p>
-                </div>
-                <div class="achievement-card" data-aos="fade-up">
-                    <i class="fas fa-medal achievement-icon"></i>
-                    <h3>Hackathon Winner</h3>
-                    <p>First place in University Hackathon 2023</p>
-                </div>
-                <div class="achievement-card" data-aos="fade-left">
-                    <i class="fas fa-award achievement-icon"></i>
-                    <h3>Top Performer</h3>
-                    <p>Consistently ranked in top 5% of class</p>
-                </div>
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6 mt-8">
+                <a href="https://github.com/" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/feed/" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/explore" target="_blank" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
             </div>
 
-            <!-- New Testimonials Section -->
-            <h2 class="section-title">What People Say</h2>
-            <div class="testimonial-section">
-                <div class="testimonial-card" data-aos="fade-right">
-                    <p class="testimonial-quote">"Christian is an exceptional developer with a keen eye for detail. His work consistently exceeds expectations."</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Doe" class="author-avatar">
-                        <div class="author-info">
-                            <div class="author-name">John Doe</div>
-                            <div class="author-title">Project Manager, Tech Corp</div>
+            <a href="First.html" class="btn-primary mt-8 inline-block">Back to Home</a>
+
+            <!-- Achievements Section -->
+            <h2 class="section-title mt-12">Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card" data-aos="fade-right">
+                    <i class="fas fa-trophy text-4xl text-secondary-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">Best Developer Award</h3>
+                    <p class="text-gray-600">Recognized for outstanding contributions to web development</p>
+                </div>
+                <div class="card" data-aos="fade-right">
+                    <i class="fas fa-award text-4xl text-primary-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">UI/UX Excellence</h3>
+                    <p class="text-gray-600">Awarded for innovative and user-friendly interface designs</p>
+                </div>
+            </div>
+
+            <!-- Testimonials Section -->
+            <h2 class="section-title mt-12">What People Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card" data-aos="fade-right">
+                    <p class="text-lg italic text-gray-600 mb-4">"Christian is an exceptional developer with a keen eye for detail. His work consistently exceeds expectations."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Doe" class="w-12 h-12 rounded-full">
+                        <div>
+                            <div class="font-semibold text-primary-600">John Doe</div>
+                            <div class="text-sm text-gray-500">Project Manager, Tech Corp</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card" data-aos="fade-left">
-                    <p class="testimonial-quote">"Working with Christian was a pleasure. His technical skills and creativity are truly impressive."</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Jane Smith" class="author-avatar">
-                        <div class="author-info">
-                            <div class="author-name">Jane Smith</div>
-                            <div class="author-title">Lead Designer, Creative Studio</div>
+                <div class="card" data-aos="fade-right">
+                    <p class="text-lg italic text-gray-600 mb-4">"A creative problem solver and a true team player. Highly recommended!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Jane Smith" class="w-12 h-12 rounded-full">
+                        <div>
+                            <div class="font-semibold text-primary-600">Jane Smith</div>
+                            <div class="text-sm text-gray-500">Lead Designer, Creatives Inc</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- New Certificates Section -->
-            <h2 class="section-title">Certifications</h2>
-            <div class="certificate-grid">
-                <div class="certificate-card" data-aos="zoom-in">
-                    <img src="https://source.unsplash.com/600x400/?certificate" alt="Web Development Certificate" class="certificate-image">
-                    <div class="certificate-content">
-                        <h3 class="certificate-title">Full Stack Web Development</h3>
-                        <p class="certificate-issuer">Udacity - 2023</p>
+            <!-- Certificates Section -->
+            <h2 class="section-title mt-12">Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card overflow-hidden" data-aos="zoom-in">
+                    <img src="https://source.unsplash.com/600x400/?certificate" alt="Web Development Certificate" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-600 mb-2">Full Stack Web Development</h3>
+                        <p class="text-gray-500">Udacity - 2023</p>
                     </div>
                 </div>
-                <div class="certificate-card" data-aos="zoom-in">
-                    <img src="https://source.unsplash.com/600x400/?diploma" alt="UI/UX Certificate" class="certificate-image">
-                    <div class="certificate-content">
-                        <h3 class="certificate-title">UI/UX Design</h3>
-                        <p class="certificate-issuer">Google - 2022</p>
+                <div class="card overflow-hidden" data-aos="zoom-in">
+                    <img src="https://source.unsplash.com/600x400/?diploma" alt="UI/UX Certificate" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-primary-600 mb-2">UI/UX Design Specialization</h3>
+                        <p class="text-gray-500">Coursera - 2022</p>
                     </div>
                 </div>
             </div>
@@ -810,25 +864,17 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // Initialize AOS with reduced animation duration and delay
+        // Initialize AOS
         AOS.init({
-            duration: 800,  // Reduced from 1000
+            duration: 800,
             once: true,
-            offset: 100,   // Trigger animations earlier
-            delay: 0,      // Remove delay between animations
-            easing: 'ease-out',  // Smoother easing function
-            anchorPlacement: 'top-bottom'  // Trigger when top of element reaches bottom of viewport
+            offset: 100,
+            delay: 0,
+            easing: 'ease-out',
+            anchorPlacement: 'top-bottom'
         });
 
-        // Loading animation
-        window.addEventListener('load', () => {
-            document.querySelector('.loading-animation').style.opacity = '0';
-            setTimeout(() => {
-                document.querySelector('.loading-animation').style.display = 'none';
-            }, 300);  // Reduced from 500
-        });
-
-        // Existing FAQ toggle
+        // FAQ toggle
         document.querySelectorAll('.faq-question').forEach(btn => {
             btn.onclick = function() {
                 const answer = this.nextElementSibling;
@@ -837,12 +883,11 @@
             };
         });
 
-        // Progress bars animation with smoother transition
+        // Progress bars animation
         document.querySelectorAll('.progress-bar-fill').forEach(bar => {
             setTimeout(() => {
-                bar.style.transition = 'width 1s ease-out';
                 bar.style.width = bar.getAttribute('data-width');
-            }, 200);  // Reduced delay
+            }, 200);
         });
     </script>
 </body>
